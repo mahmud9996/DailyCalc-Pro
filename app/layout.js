@@ -27,9 +27,6 @@ const mono = JetBrains_Mono({
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.dailycalcpro.com";
-const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
-const isAdsenseConfigured =
-  ADSENSE_CLIENT && !ADSENSE_CLIENT.includes("0000000000000000");
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -80,13 +77,12 @@ export default function RootLayout({ children }) {
             __html: `(function(){try{var t=localStorage.getItem('dcp-theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`,
           }}
         />
-        {isAdsenseConfigured && (
-          <script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
-            crossOrigin="anonymous"
-          />
-        )}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6673310179249665"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </head>
       <body
         className={`${display.variable} ${body.variable} ${mono.variable} font-body antialiased`}
